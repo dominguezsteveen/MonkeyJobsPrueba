@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_documentos', function (Blueprint $table) {
-            $table->id();
-            $table->string('descripcion');
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('tipo_documento_id')->constrained('tipo_documento');
         });
     }
 
@@ -22,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_documentos');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['tipo_documento_id']);
+            $table->dropColumn('tipo_documento_id');
+        });
     }
 };
