@@ -1,66 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Prueba técnica MonkeyJobs
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+En este repositorio se encuentra alojado el desarrollo de la prueba técnica
 
-## About Laravel
+## Comenzando 🚀
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Instrucciones generales de cómo correr el proyecto de forma local
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Pre-requisitos 📋
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para poder ejecutar el proyecto de forma local se deben tener instalados los siguientes programas:
 
-## Learning Laravel
+1. Tener instalado Git para poder clonar el repositorio
+2. Visual Studio Code (O cualquier otro editor de tecto de preferencia)
+3. Tener instalado Mysql motor de base de datos
+4. PHP lenguaje de programación necesario para correr el aplicativo
+5. Composer para el manejador de dependencias de PHP
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Instalación 🔧
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Asumiendo que se cuentan con los programas previamente mencionados para poder ejecutar esta parte del proyecto, el siguiente paso a paso describirá cómo poder desplegar el proyecto de forma local
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Se debe clonar el repositorio en una carpeta dentro del equipo en que se quiere desplegar
+2. Luego se debe acceder a la carpeta raíz donde quedó el repositorio y allí abrir una consola de comandos y ejecutar el comando: "composer install"
+3. Seguido se ejecuta el comando: "npm install"
+4. Posteriormente crear una base de datos en MySQL la cual se llamará "monkey_jobs_prueba"
+5. Continuando, se debe crear el archivo .env. Se puede duplicar el archivo .env.example y renombrarlo como .env
+6. Luego se genera la clave de la aplicación ejecutando el comando: "php artisan key:generate"
+7. Por último, ejecutamos las migraciones y los seeder con el comando: "php artisan migrate:fresh --seed"
+8. Una vez finalizado el proceso, se ejecuta el comando: "php artisan serve"
 
-## Laravel Sponsors
+## Despliegue 📦
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Este comando "php artisan serve" desplegará de forma local la aplicación, la cual por defecto se despliega en el puerto 8000, en caso de que dicho puerto se encuentre ocupado o se requiere otro puerto, se debe ejecutar el comando: "php artisan serve --port={puerto}", reemplazando "{puerto}" por el número de puerto a utilizar.
 
-### Premium Partners
+## Explicación ⚙️
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Al iniciar la aplicación en la consola arrojara "Server running on [http://127.0.0.1:8080]"
 
-## Contributing
+Se tienen 6 rutas las cuales se encuentran con una mejor descripción en el archivo "MonkeyJobsPrueba_postman.json", esta ubicado en "public/MonkeyJobsPrueba_postman.json"
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Las 6 rutas son:
+→/api/users
+|| Obtendremos un archivo json con los usuarios registrados hasta el momento pero de una forma paginada, se dan los links de las paginas y el total de los usuarios.
 
-## Code of Conduct
+→/api/users-all
+|| Obtendremos un array con todos los usuarios registrados hasta el momento.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+→/api/users
+|| Esta ruta requiere el método POST y un objeto json con los datos del usuario a registrar, por ejemplo: {"nombre":"Steveen Andres","apellido":"Dominguez Bedoya","documento":"1007729681","email":"steveena.dominguezb@gmail.com",
+"password":"mipassword","tipo_documento_id":1}. Nos devuelve un status y un mensaje de confirmación.
 
-## Security Vulnerabilities
+→/api/users/{id}
+|| Usando el método GET, obtendremos el usuario buscado mediante el parametro 'id', por ejemplo: /api/users/26
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+→/api/users/{id}
+|| Usando el método PUT podemos actualizar un usuario buscado mediante el parametro 'id', por ejemplo: /api/users/26. Se debe pasar un json de este tipo: {"nombre":"Steveen Andres","apellido":"Dominguez Bedoya","documento":"1007729681","email":"steveena.dominguezb@gmail.com","password":"mipassword","tipo_documento_id":1}.
 
-## License
+→/api/users/{id}
+|| Usando el método DELETE podemos eliminar un usuario buscado mediante el parametro 'id', por ejemplo: /api/users/26
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Construido con 🛠️
+
+-   [Laravel](https://laravel.com/docs/10.x)
