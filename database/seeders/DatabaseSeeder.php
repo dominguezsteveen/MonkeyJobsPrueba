@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(TipoDocumentoSeeder::class);
 
-        User::factory(5)->create(25);
+        User::factory(5)->count(25)->create();
     }
 }
