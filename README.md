@@ -35,7 +35,7 @@ Este comando "php artisan serve" desplegará de forma local la aplicación, la c
 
 ## Explicación ⚙️
 
-Al iniciar la aplicación en la consola arrojara "Server running on [http://127.0.0.1:8080]"
+Al iniciar la aplicación en la consola arrojara "Server running on [http://127.0.0.1:8000]"
 
 Se tienen 6 rutas las cuales se encuentran con una mejor descripción en el archivo "MonkeyJobsPrueba_postman.json", esta ubicado en "public/MonkeyJobsPrueba_postman.json"
 
