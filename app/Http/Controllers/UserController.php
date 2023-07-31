@@ -21,24 +21,28 @@ class UserController extends Controller
         $rules = [
             'nombre' => 'required|string|min:1|max:100',
             'apellido' => 'required|string|min:1|max:100',
+            'documento' => 'required|string|min:1|max:100',
             'email' => 'required|email|min:1|max:100',
+            'password' => 'required|string|min:8',
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
         ];
-        $validator = Validator::make($request->input, $rules);
+
+        $validator = Validator::make($request->input(), $rules);
+
         if ($validator->fails()) {
             return response()->json(([
                 'status' => false,
                 'erros' => $validator->errors()->all()
             ]), 400);
-        } else {
-            $newUser = new User($request->input());
-            $newUser->save();
-
-            return response()->json(([
-                'status' => true,
-                'message' => "User created succesfully"
-            ]), 200);
         }
+
+        $newUser = new User($request->input());
+        $newUser->save();
+
+        return response()->json(([
+            'status' => true,
+            'message' => "User created succesfully"
+        ]), 200);
     }
 
     public function show(User $user)
@@ -51,10 +55,12 @@ class UserController extends Controller
         $rules = [
             'nombre' => 'required|string|min:1|max:100',
             'apellido' => 'required|string|min:1|max:100',
+            'documento' => 'required|string|min:1|max:100',
             'email' => 'required|email|min:1|max:100',
+            'password' => 'required|string|min:8',
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
         ];
-        $validator = Validator::make($request->input, $rules);
+        $validator = Validator::make($request->input(), $rules);
         if ($validator->fails()) {
             return response()->json(([
                 'status' => false,
