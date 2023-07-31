@@ -10,7 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::select('users.*', 'tipo_documentos.descripcion as tipo_doc')
+            ->join('tipo_documentos', 'tipo_documentos.id', '=', 'users.tipo_documento_id')
+            ->paginate(10);
         return response()->json($users);
     }
 
@@ -76,5 +78,13 @@ class UserController extends Controller
             'status' => true,
             'message' => "User deleted succesfully"
         ]), 200);
+    }
+
+    public function all()
+    {
+        $users = User::select('users.*', 'tipo_documentos.descripcion as tipo_doc')
+            ->join('tipo_documentos', 'tipo_documentos.id', '=', 'users.tipo_documento_id')
+            ->get();
+        return response()->json($users);
     }
 }
