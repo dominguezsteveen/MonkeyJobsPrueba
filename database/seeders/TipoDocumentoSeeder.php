@@ -20,7 +20,7 @@ class TipoDocumentoSeeder extends Seeder
         $tipo->descripcion = "Tarjeta Identidad";
         $tipo->save();
         $tipo = new TipoDocumento();
-        $tipo->descripcion = "Cedula de Extranjeria";
+        $tipo->descripcion = "Cédula de Extranjeria";
         $tipo->save();
     }
 }

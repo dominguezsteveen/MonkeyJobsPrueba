@@ -20,6 +20,7 @@ class UserFactory extends Factory
         return [
             'nombre' => fake()->firstName(),
             'apellido' => fake()->lastName(),
+            'documento' => fake()->randomNumber(8),
             'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'tipo_documento_id' => fake()->numberBetween(1, 3),
